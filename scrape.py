@@ -4,11 +4,15 @@
 This script takes in the doctor's Nepal Medical Council ID and then returns the information that is available on NMC website
 """
 
-import sqlite3
 from typing import List
+import logging
 
 import requests
 from bs4 import BeautifulSoup
+
+
+logging.basicConfig(filename='scrape.log', filemode='w', 
+    format='%(asctime)s - %(levelname)s: %(message)s', level=logging.INFO)
 
 # URL = f{}'
 # headers = {"Host": "nmc.org.np",
@@ -30,6 +34,10 @@ def get_doctor_info(nmc_number: int = None) -> List:
     @param: nmc_number(int): the Doctor's ID 
     Returns: List(str): [name, nmc_number, city, gender, degree]
 
+    Usage:
+    get_doctor_info(123):
+    >> ['Dr. Heralal Babu Shrestha' 123, 'Pokhara, Kaski', 'Male', 'MBBS']
+
     """
     try:
         URL = f"https://nmc.org.np/searchPractitioner?name=&degree=&nmc_no={nmc_number}"
@@ -39,29 +47,9 @@ def get_doctor_info(nmc_number: int = None) -> List:
         return [row.find_all("td")[1].text.strip() for row in result.find_all("tr")]
 
     except Exception as e:
-        print(f"{e} for nmc number {nmc_number}")
+        logging.warn(f"{e} for nmc number {nmc_number}")
         pass
 
 
-def write_to_sqlite(nmc_number):
-    with sqlite3.connect("nmc.db") as conn:
-        conn.execute(
-            """create table if not exists doctors (
-            full_name text,
-            nmc_number int primary key,
-            location text,
-            gender text,
-            degree text
-        )
-        """
-        )
-        conn.execute(
-            """select nmc_number from doctors
-            where nmc_number = ?""",
-            [nmc_number],
-        )
-
-
 if __name__ == "__main__":
-    write_to_sqlite(5)
-    # print(get_doctor_info())
+    print(get_doctor_info(5))
