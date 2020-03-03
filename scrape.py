@@ -9,23 +9,27 @@ import logging
 
 import requests
 from bs4 import BeautifulSoup
+import time
 
 
-logging.basicConfig(filename='scrape.log', filemode='w', 
-    format='%(asctime)s - %(levelname)s: %(message)s', level=logging.INFO)
+logging.basicConfig(
+    filename="scrape.log",
+    filemode="w",
+    format="%(asctime)s - %(levelname)s: %(message)s",
+    level=logging.INFO,
+)
 
-# URL = f{}'
-# headers = {"Host": "nmc.org.np",
-#             "Connection": "keep-alive",
-#             "Content-Length": '255',
-#             "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
-#             "Content-Type": "application/x-www-form-urlencoded",
-#             "Accept": "application/json, text/javascript, */*; q=0.01",
-#             "X-Requested-With":"XMLHttpRequest",
-#             "DNT": "1",
-#             "Referer": "https://nmc.org.np",
-#             "Accept-Encoding": "gzip, deflate, br",
-#             "Accept-Language": "en-US, en; q=0.8;q=0.6"}
+# provide a legitimate user agent string. Scrape ethically!!
+headers = {
+    "Host": "nmc.org.np",
+    "Connection": "keep-alive",
+    "Content-Length": "255",
+    "User-Agent": "NMC doctor list aggregator for analysis (parashupreti@gmail.com)",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Referer": "https://github.com/upretip/nmc",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Accept-Language": "en-US, en; q=0.8;q=0.6",
+}
 
 
 def get_doctor_info(nmc_number: int = None) -> List:
@@ -41,7 +45,7 @@ def get_doctor_info(nmc_number: int = None) -> List:
     """
     try:
         URL = f"https://nmc.org.np/searchPractitioner?name=&degree=&nmc_no={nmc_number}"
-        data = requests.get(URL).text
+        data = requests.get(URL, headers).text
         soup = BeautifulSoup(data, "html.parser")
         result = soup.find("tbody")
         return [row.find_all("td")[1].text.strip() for row in result.find_all("tr")]

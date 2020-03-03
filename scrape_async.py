@@ -4,7 +4,6 @@ from codetiming import Timer
 from bs4 import BeautifulSoup
 
 
-
 async def task(name, work_queue):
 
     timer = Timer(text=f"Task {name} elapsed time: {{:.1f}}")
@@ -20,12 +19,11 @@ async def task(name, work_queue):
             timer.start()
 
             async with session.get(url) as response:
-                soup = BeautifulSoup(response.text, 'html.parser')
-                result = soup.find('tbody')
+                soup = BeautifulSoup(response.text, "html.parser")
+                result = soup.find("tbody")
                 # for row in result.find_all('tr'):
                 #     td = row.find_all('td')
-                    
- 
+
                 values = await result
                 print(values)
 
@@ -48,7 +46,7 @@ async def main():
 
     for nmc_id in range(10):
 
-        await work_queue.put(f'https://nmc.org.np/searchPractitioner?nmc_no={nmc_id}')
+        await work_queue.put(f"https://nmc.org.np/searchPractitioner?nmc_no={nmc_id}")
 
     # Run the tasks
 

@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "venv/bin/python3",
+    "python.pythonPath": "/Users/pupreti/Documents/nmc/venv/bin/python3",
     "python.formatting.provider": "black"
 }
