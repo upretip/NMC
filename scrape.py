@@ -48,6 +48,7 @@ def get_doctor_info(nmc_number: int = None) -> List:
         data = requests.get(URL, headers).text
         soup = BeautifulSoup(data, "html.parser")
         result = soup.find("tbody")
+        time.sleep(30)
         return [row.find_all("td")[1].text.strip() for row in result.find_all("tr")]
 
     except Exception as e:

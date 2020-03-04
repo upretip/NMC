@@ -33,5 +33,5 @@ def write_to_sqlite(nmc_number):
 if __name__ == "__main__":
     from concurrent.futures import ThreadPoolExecutor
 
-    with ThreadPoolExecutor(max_workers=10) as pool:
+    with ThreadPoolExecutor() as pool:
         pool.map(write_to_sqlite, list(range(1, 20387)))
