@@ -20,6 +20,14 @@ with sqlite3.connect("nmc.db") as conn:
 
 print(doctors.describe)
 
+# %%
+
+total_doctors = len(doctors)
+
+print(f'There are {total_doctors} doctors registered through Nepal Medical Council')
+
+# %%
+
 #%%
 doctors.groupby(["gender", "degree"]).count(
     
