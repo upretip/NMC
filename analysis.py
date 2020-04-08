@@ -1,4 +1,8 @@
 #%%[markdown]
+# This file looking like this is no coincidence. This script is written in VScode to run interactively. 
+# Once the code is ready, it can be interactively run. It is possible to run this whole file as a script as well.
+# Using the `Python: Export Current Python File as Jupyter Notebook` on the command palette, 
+# this `.py` file can be converted into a jupyter noteobok. 
 
 ## Introduction
 
@@ -29,9 +33,7 @@ print(f'There are {total_doctors} doctors registered through Nepal Medical Counc
 # %%
 
 #%%
-doctors.groupby(["gender", "degree"]).count(
-    
-).pivot_table()
+doctors.groupby(["degree","gender"]).count().reset_index()
 
 
 
