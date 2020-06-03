@@ -99,3 +99,53 @@ doctors['district'] = doctors['location'].\
 # counts = pd.DataFrame(doctors['location'].\
 #     apply(lambda x: x.strip(',.!? \n\t').lower().split(',')[-1].strip()).\
 #         value_counts())
+
+#%%
+# name based analyses
+
+doctors['full_name'].\
+    apply(lambda x: x.lower().replace('dr. ','').split()[0]).\
+        value_counts().head(30).\
+            plot(kind = 'bar')
+
+#%% [markdown]
+
+# Next, try to analyze the demographic mix of doctors based on caste. 
+# While we do not have caste listed on our data, Nepali surname is a pretty
+# good indicator of their caste. While some surnames are shared over multile castes/ethnicities, 
+# we will not dive into the details. This is a mere attempt at trying to see if such join is possible.
+# The joined data is from the internet, so I cannot comment on it, but it looked complete (ish) and accurate (ish)
+# from my novice eyes
+
+#%%
+doctors['last_name'] = doctors['full_name'].\
+    apply(lambda x: x.lower().replace('dr. ','').split()[-1])
+# %%
+# trying to convert caste.txt into a legible dataframe
+
+with open('caste.txt', 'r') as caste:
+    next(caste)
+    next(caste)
+    caste = caste.readlines()
+    # with open('writecaste.csv','w') as writefile:
+    clean_cast =[line.strip().split(".")[1].strip().lower().split('>', maxsplit=3)
+                for line in caste]
+                     
+
+# %%
+caste_df = pd.DataFrame(clean_cast, columns= None)
+caste_cols = ['surname', 'caste_ethnicity', 'subclass', 'extra']
+caste_df.columns = caste_cols
+caste_df['surname']= caste_df['surname'].str.strip()
+caste_df.iloc[:,0] = caste_df.iloc[:,0].str.strip()
+print(caste_df.head())
+
+
+# %%
+merged_doctors = doctors.merge(caste_df.drop_duplicates(\
+    subset='surname',keep='last'),\
+         left_on='last_name', right_on='surname')
+
+merged_doctors.caste_ethnicity.value_counts().plot(kind ='bar')
+
+# %%
