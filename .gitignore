@@ -151,3 +151,4 @@ dmypy.json
 venv
 venv/*
 .idea
+.ipynb_checkpoints
