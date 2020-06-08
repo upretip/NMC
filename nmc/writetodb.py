@@ -1,16 +1,16 @@
-from scrape import get_doctor_info
+from nmc.scrape import get_doctor_info
 import sqlite3
 
 
-def write_to_sqlite(nmc_number):
+def write_to_sqlite(nmc_number: int) -> None:
 
     """
     Use the scrape function from scrape.py and write the data on sqlite database
-    @param nmc_number (int): doctor's nmc number
+    @param nmc_number: doctor's nmc number
     @returns None
 
     """
-    with sqlite3.connect("nmc.db") as conn:
+    with sqlite3.connect("data/nmc.db") as conn:
         conn.execute(
             """create table if not exists doctors (
             full_name text,

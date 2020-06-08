@@ -36,7 +36,7 @@ import sqlite3
 # connect to sqlite
 from numpy import int64
 
-with sqlite3.connect("nmc.db") as conn:
+with sqlite3.connect("data/nmc.db") as conn:
     doctors = pd.read_sql("select * from doctors", conn)
 
 # %%
@@ -123,7 +123,7 @@ doctors['last_name'] = doctors['full_name'].\
 # %%
 # trying to convert caste.txt into a legible dataframe
 
-with open('caste.txt', 'r') as caste:
+with open('data/caste.txt', 'r') as caste:
     next(caste)
     next(caste)
     caste = caste.readlines()

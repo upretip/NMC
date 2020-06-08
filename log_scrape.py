@@ -1,5 +1,5 @@
 import sqlite3
-from writetodb import write_to_sqlite
+from nmc.writetodb import write_to_sqlite
 
 with sqlite3.connect('nmc.db') as conn:
     cur = conn.cursor()
