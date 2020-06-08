@@ -12,3 +12,5 @@ Data on all the registered doctors from NMC_No 1 to 20387 was extracted from nmc
     - Degree
 
 Unfortunately, this particular website doesn't track where they currently live, or work, or if they even practice actively. We will assume thta this information is correct and use it as if this is correct informaation.
+
+The data available in `data/nmc.db` is not the same as reported on the nmc.org.np website. The website lists that there are 26K + bachelor level doctors, and 7k+ masters level.
