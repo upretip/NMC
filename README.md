@@ -1,3 +1,6 @@
+![Python package](https://github.com/upretip/NMC/workflows/Python%20package/badge.svg)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/upretip/NMC/master)
+
 # NMC
 
 A few days ago I saw a post on twitter that did a basic analysis on data about doctors in Nepal. It listed some basic information such as the breakdown of gender, last names, home district, etc. indivudualy. Somebody had asked for the source of their information at that time.  After thinking about their analysis I thougth I could play around and get the data myself from the [Nepal Medical Council](www.nmc.org.np) website.  
