@@ -1,2 +1,2 @@
 def always_pass():
-    assert True
+    assert 1 == 1

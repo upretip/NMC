@@ -1,5 +1,4 @@
-![Python package](https://github.com/upretip/NMC/workflows/Python%20package/badge.svg)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/upretip/NMC/master)
+[![Python package](https://github.com/upretip/NMC/actions/workflows/python-package.yml/badge.svg)](https://github.com/upretip/NMC/actions/workflows/python-package.yml)[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/upretip/NMC/master)
 
 # NMC
 

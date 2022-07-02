@@ -152,3 +152,4 @@ venv
 venv/*
 .idea
 .ipynb_checkpoints
+pythonenv3.8
