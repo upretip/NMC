@@ -1,4 +1,4 @@
-from nmc.scrape import get_doctor_info
+from scrape import get_doctor_info
 import sqlite3
 
 

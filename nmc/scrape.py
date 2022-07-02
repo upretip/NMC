@@ -13,7 +13,7 @@ import time
 
 
 logging.basicConfig(
-    filename="../data/scrape.log",
+    filename="./scrape.log",
     filemode="w",
     format="%(asctime)s - %(levelname)s: %(message)s",
     level=logging.INFO,
